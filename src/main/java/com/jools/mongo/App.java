@@ -50,6 +50,7 @@ public class App {
 		for (String key : header) {
 			bw.write(key + "\t");
 		}
+		bw.write("\n");
 		while (cursor.hasNext()) {
 			DBObject obj = cursor.next();
 			for (String key : header) {
