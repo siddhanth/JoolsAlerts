@@ -2,6 +2,7 @@ package com.jools.mongo;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -46,22 +47,28 @@ public class App {
 	public void executeQuery(DBCollection collection, DBObject ref)
 			throws IOException {
 		DBCursor cursor = collection.find(ref);
-		BufferedWriter bw = new BufferedWriter(new FileWriter(outFile));
-		for (String key : header) {
-			bw.write(key + "\t");
-		}
-		bw.write("\n");
-		while (cursor.hasNext()) {
-			DBObject obj = cursor.next();
+		File f = new File(outFile);
+		if (f.exists())
+			f.delete();
+		if (cursor.length() > 0) {
+
+			BufferedWriter bw = new BufferedWriter(new FileWriter(outFile));
 			for (String key : header) {
-				if (obj.containsField(key)) {
-					bw.write(obj.get(key).toString());
-				}
-				bw.write("\t");
+				bw.write(key + "\t");
 			}
 			bw.write("\n");
+			while (cursor.hasNext()) {
+				DBObject obj = cursor.next();
+				for (String key : header) {
+					if (obj.containsField(key)) {
+						bw.write(obj.get(key).toString());
+					}
+					bw.write("\t");
+				}
+				bw.write("\n");
+			}
+			bw.close();
 		}
-		bw.close();
 	}
 
 	public static void main(String[] args) throws IOException {
