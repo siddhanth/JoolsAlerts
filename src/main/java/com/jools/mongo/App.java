@@ -37,6 +37,7 @@ public class App {
 	private static String collection;
 	private static String startTime;
 	private static String outFile;
+	private static String configFile;
 
 	String[] header = new String[] { "userid", "date", "count", "os",
 			"browser", "tester", "kingdom", "phylum", "class", "family",
@@ -100,6 +101,8 @@ public class App {
 				query.append("date", Integer.parseInt(startTime));
 			} else if (args[ix].equals("-out")) {
 				outFile = args[ix + 1];
+			} else if (args[ix].equals("-config")) {
+				configFile = args[ix + 1];
 			}
 
 		}
@@ -110,7 +113,7 @@ public class App {
 							+ "<species> -or <order>] -date <date> -out <outfile>");
 			System.exit(0);
 		}
-		BufferedReader br = new BufferedReader(new FileReader("config"));
+		BufferedReader br = new BufferedReader(new FileReader(configFile));
 		String line;
 		while ((line = br.readLine()) != null) {
 			String[] parts = line.split(":");
