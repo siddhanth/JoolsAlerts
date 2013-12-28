@@ -107,7 +107,7 @@ public class App {
 			System.err
 					.println("usage: [-b <browser> -o <os> -t <tester> -k <kingdom> -c"
 							+ " <class> -f <family> -g <genus> -s "
-							+ "<species> -or <order>] -d <date> -out <outfile>");
+							+ "<species> -or <order>] -date <date> -out <outfile>");
 			System.exit(0);
 		}
 		BufferedReader br = new BufferedReader(new FileReader("config"));
