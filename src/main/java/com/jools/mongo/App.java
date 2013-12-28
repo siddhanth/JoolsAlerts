@@ -99,7 +99,8 @@ public class App {
 				query.append("order", order);
 			} else if (args[ix].equals("-date")) {
 				startTime = args[ix + 1];
-				query.append("date", Integer.parseInt(startTime));
+				query.append("date",
+						new BasicDBObject("$gte", Integer.parseInt(startTime)));
 			} else if (args[ix].equals("-out")) {
 				outFile = args[ix + 1];
 			} else if (args[ix].equals("-config")) {
