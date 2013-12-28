@@ -97,7 +97,7 @@ public class App {
 				query.append("order", order);
 			} else if (args[ix].equals("-date")) {
 				startTime = args[ix + 1];
-				query.append("date", new BasicDBObject("$gte", startTime));
+				query.append("date", Integer.parseInt(startTime));
 			} else if (args[ix].equals("-out")) {
 				outFile = args[ix + 1];
 			}
@@ -138,6 +138,6 @@ public class App {
 		App obj = new App();
 
 		obj.executeQuery(coll, query);
-		System.out.println("Hello World!");
+		System.out.println("Done");
 	}
 }
