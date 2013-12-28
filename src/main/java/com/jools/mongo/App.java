@@ -50,13 +50,14 @@ public class App {
 		File f = new File(outFile);
 		if (f.exists())
 			f.delete();
-		if (cursor.length() > 0) {
+		if (cursor.hasNext()) {
 
 			BufferedWriter bw = new BufferedWriter(new FileWriter(outFile));
 			for (String key : header) {
 				bw.write(key + "\t");
 			}
 			bw.write("\n");
+
 			while (cursor.hasNext()) {
 				DBObject obj = cursor.next();
 				for (String key : header) {
